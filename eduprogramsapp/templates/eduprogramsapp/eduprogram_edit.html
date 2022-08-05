@@ -1,0 +1,31 @@
+{% extends 'pioner_prj/base.html' %}
+{% load static %}
+
+{% block js %}
+  {{ block.super }}
+  <script src="{% static 'js/left_menu.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h4 class="mb-3">{{ eduprogram.name }}</h4>
+  <div class="row">
+    <div class="col-md-auto">
+      <ul class="list-group align-middle">
+        <li class="list-group-item"><p>Основная программа</p></li>
+        <li class="list-group-item"><p>Рабочие программы</p></li>
+        <li class="list-group-item"><p>КТП</p></li>
+      </ul>
+    </div>
+    <div class="col">
+      <form class="needs-validation" novalidate="" method="post">
+        {% csrf_token %}
+        {{ eduprogram_form.as_p }}
+        <button class="w-100 btn btn-lg btn-primary" type="submit">
+                Сохранить изменения
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

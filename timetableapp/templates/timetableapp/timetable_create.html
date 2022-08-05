@@ -1,0 +1,40 @@
+{% extends 'pioner_prj/base.html' %}
+{% load static %}
+
+{% block css %}
+  {{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{% static 'timetableapp/style.css' %}">
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script src="{% static 'js/timetable.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h4 class="mb-3">Расписание новой группы</h4>
+  <table class="table table-bordered align-middle">
+    <thead>
+      <tr>
+          <th scope="col">Время</th>
+          {% for working_day in working_days %}
+            <th scope="col">{{ working_day }}</th>
+          {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for time_slot in time_slots %}
+        <tr>
+          <th scope="row">{{ time_slot }}</th>
+          {% for working_day in working_days %}
+            <td></td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

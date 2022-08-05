@@ -1,0 +1,30 @@
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <ul id="menu" class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li hidden=true><a id="index" href="{% url 'index' %}" class="nav-link px-2 link-dark" data-rights="">Главная</a></li>
+            <li hidden=true><a id="students" href="{% url 'students:index' %}" class="nav-link px-2 link-dark" data-rights="">Обучающиеся</a></li>
+            <li hidden=true><a id="programs" href="{% url 'eduprograms:index' %}" class="nav-link px-2 link-dark" data-rights="is_methodist">Образовательные программы</a></li>
+            <li hidden=true><a id="timetables" href="{% url 'timetables:index' %}" class="nav-link px-2 link-dark" data-rights="is_timetable_manager">Расписание</a></li>
+            <li hidden=true><a id="contacts" href="{% url 'contacts' %}" class="nav-link px-2 link-dark" data-rights="">Контакты</a></li>
+        </ul>
+        <div class="col-md-3 text-end">
+            {% if user.is_authenticated %}
+                <button type="button" class="btn btn-primary">
+                    <a href="{% url 'auth:edit' %}" class="nav-link px-2">
+                        {{ user.first_name|default:'Пользователь' }} {{ user.last_name|default:'' }}
+                    </a>
+                </button>
+                <button type="button" class="btn btn-outline-primary me-2">
+                    <a href="{% url 'auth:logout' %}" class="nav-link px-2">Выйти</a>
+                </button>
+            {% else %}
+                <button type="button" class="btn btn-outline-primary me-2">
+                    <a href="{% url 'auth:login' %}" class="nav-link px-2">Войти</a>
+                </button>
+                <button type="button" class="btn btn-primary">
+                    <a href="{% url 'auth:register' %}" class="nav-link px-2">Зарегистрироваться</a>
+                </button>
+            {% endif %}
+        </div>
+    </header>
+</div>

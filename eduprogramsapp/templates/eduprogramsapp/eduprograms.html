@@ -1,0 +1,44 @@
+{% extends 'pioner_prj/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <button type="button" class="btn btn-primary">
+            <a href="{% url 'eduprograms:eduprogram_create' %}" class="nav-link px-2">Создать новую ДОП</a>
+        </button>
+        <div class="bd-example-snippet bd-code-snippet">
+            <div class="bd-example">
+                <table class="table table-stripped">
+                    <thread>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Тип</th>
+                            <th scope="col">Направленность</th>
+                            <th scope="col">Наименование</th>
+                            <th scope="col">Продолжительность</th>
+                            <th scope="col">Адапт.</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thread>
+                    <tbody>
+                    {% for eduprogram in eduprograms %}
+                        <tr>
+                            <th scope="row">{{ eduprogram.id }}</th>
+                            <td>{{ eduprogram.type }}</td>
+                            <td>{{ eduprogram.orientation }}</td>
+                            <td>{{ eduprogram.name }}</td>
+                            <td>{{ eduprogram.duration }}</td>
+                            <td>{% if eduprogram.is_adapted %} &#10003; {% endif %}</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-primary me-2">
+                                    <a href="{% url 'eduprograms:eduprogram_edit' eduprogram.pk %}" class="nav-link px-2">Редактировать</a>
+                                </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

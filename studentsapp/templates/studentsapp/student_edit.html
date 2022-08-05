@@ -1,0 +1,15 @@
+{% extends 'pioner_prj/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h4 class="mb-3">{{ student.first_name }} {{ student.last_name }}</h4>
+    <form class="needs-validation" novalidate="" method="post">
+        {% csrf_token %}
+        {{ student_form }}
+        <button class="w-100 btn btn-lg btn-primary" type="submit">
+                Сохранить изменения
+        </button>
+    </form>
+</div>
+{% endblock %}
